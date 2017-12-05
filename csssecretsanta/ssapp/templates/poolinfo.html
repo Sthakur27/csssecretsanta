@@ -1,0 +1,55 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+{% block page_content %}
+<body background="http://eskipaper.com/images/holiday-backgrounds-9.jpg">
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<style>
+h4 {
+    text-align: right;
+}
+
+h2 {
+    text-align: right;
+}
+
+h3 {
+    text-align: right;
+}
+</style>
+
+<span class="btn-group" role="group" style="margin-bottom:15px; float:right;">
+        <a href="/logout" type="button" class = "btn btn-lg btn-secondary btn-info">
+        Log Out
+        </a>
+        </span>
+
+<br><br><br>
+<h2>{{pool.name}} Group</h2>
+<h3>{{pool.description}}
+<h3>
+Your Target is: {{target.username}}<br>
+{% if target.wishlist is not none %}
+Possible gifts: {{target.wishlist}}</h3>
+{% endif %}
+{% if noWishList %}
+<form action="/poolinfo/{{pool.id}}" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Enter a Wishlist..." name="wishlist">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                <input type="submit" value="Submit" class="btn btn-primary btn-large btn-block" >
+                            <br>
+                        </div>
+
+        </div></div>
+</form>
+{% endif %}
+{% endblock %}

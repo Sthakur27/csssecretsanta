@@ -1,0 +1,43 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+
+
+{% block page_content %}
+
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<body background="https://hdwallsource.com/img/2014/2/green-holiday-backgrounds-18367-18832-hd-wallpapers.jpg">
+<form action="/createpool" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                               <h1>Create Group</h1>
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Group Name" name="name">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+                              
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Description" name="description">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+                                <div class="control-group">
+                                <textarea cols='35' rows='20' type="text" class="login-field" value="" placeholder="Users..." name="userinfo"></textarea>
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+
+                <input type="submit" value="Create Group" class="btn btn-primary btn-large btn-block" >
+                            <br>
+ <a href="/" type="button" class="btn btn-primary btn-larg btn-block"><center>Return</center></a>
+
+                        </div>
+
+        </div></div>
+</form>
+</body>
+{% endblock %}
+
