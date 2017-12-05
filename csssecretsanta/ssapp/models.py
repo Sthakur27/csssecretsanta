@@ -1,9 +1,6 @@
 #creates an SQLalchemy ORM mapping of database tables
 from sqlalchemy import *
-from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import Column, Integer, String
 from ssapp import db
 ########################################################################
 #creates User class for users table

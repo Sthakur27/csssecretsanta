@@ -1,0 +1,7 @@
+flask
+flask-mail
+sqlalchemy
+flask-sqlalchemy
+flask-bootstrap
+flask-migrate
+sqlalchemy-continuum

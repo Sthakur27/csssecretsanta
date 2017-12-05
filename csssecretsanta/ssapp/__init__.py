@@ -12,7 +12,7 @@ app.secret_key='sidskey'
 #gets all specified configurations from 'config.py'
 app.config.from_pyfile('settings.py')
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 280
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #create database ORM mapping
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

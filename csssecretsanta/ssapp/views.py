@@ -25,21 +25,22 @@ def home():
     if request.method=='POST':
          try:
              #get the pool specified
-             p=Pool.query.filter_by(name=request.form['pool']).first()
+             pool=Pool.query.filter_by(name=request.form['pool']).first()
              #get the users matching the username and password
              users=User.query.filter_by(username=request.form['username']).filter_by(password=request.form['password']).all()
              #check if any of those users are in the pool's userinfo
              user=None
-             p_users=p.userinfo.split(' ')
+             pool_users=pool.userinfo.split(' ')
              for u in users:
-                  if(str(u.id) in p_users):
+                  if(str(u.id) in pool_users):
                         user=u
              if(user):
                  #login the user and send to /poolinfo page
-                 if(str(user.id) in p.userinfo.split(' ')):
+                 if(str(user.id) in pool.userinfo.split(' ')):
                       session['currentuser']=user.id
                       session['logged_in']=True
-                      return redirect("/poolinfo/"+str(p.id))
+                      return redirect("/poolinfo/"+str(pool.id))
+                 #even though error, I chose to use bg-success color(green) because it contrasts with the website background color(red)
                  flash("User not in Group",'bg-success') 
              else:
                  flash("User not Found",'bg-success')
@@ -103,7 +104,7 @@ def createpool():
                 temp=u.split(',')
                 if(len(temp)!=3):
                    continue
-                user=User(temp[0],temp[1],temp[2])
+                user=User(temp[0].strip(),temp[1].strip(),temp[2].strip())
                 db.session.add(user)
                 db.session.commit()
                 userstr.append(str(user.id))
@@ -134,10 +135,10 @@ def createpool():
 
             #create the pool
             userstr=' '.join(userstr).strip()
-            p=Pool(request.form['name'],request.form['description'],userstr)
+            newpool=Pool(request.form['name'].strip(),request.form['description'].strip(),userstr)
             flash("Group Created",'bg-success')
             flash("Emails sent out",'bg-success')
-            db.session.add(p)
+            db.session.add(newpool)
             db.session.commit()
             return redirect('/login')
         except:
